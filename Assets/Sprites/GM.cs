@@ -8,17 +8,31 @@ public class GM : MonoBehaviour {
 	public int points;
 
 	public Text livesValue;
-	public Text pointsValue; 
+	public Text pointsValue;
+
+	public GameObject DoGameOverSign;
 
 	public void SetLives (int newValue){
 		_Lives = newValue;
 		Debug.Log ("Lives now equals:" + _Lives);
 		livesValue.text = _Lives.ToString ();
+
+		if (_Lives == 0) {
+			DoGameOver ();
+		}
+	}
+		
+	public void DoGameOver()
+	{
+		DoGameOverSign.SetActive (true);
 	}
 
 	public int GetLives (){
 		
 		return _Lives;
 	}
+
+
 }
+
 
