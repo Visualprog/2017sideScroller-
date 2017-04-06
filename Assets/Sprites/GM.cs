@@ -31,8 +31,6 @@ public class GM : MonoBehaviour {
 		
 		return _Lives;
 	}
-
-
 }
 
 
