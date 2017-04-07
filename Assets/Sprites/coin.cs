@@ -10,7 +10,7 @@ public class coin : MonoBehaviour {
 		var player = coll.gameObject.GetComponent<Players> ();
 		if (player != null) {
 			gameObject.SetActive (false);
-			FindObjectOfType<GM> ().SetPoints (FindObjectOfType<GM> ().GetPoints () + 1);
+			FindObjectOfType<GM> ().SetPoints (FindObjectOfType<GM> ().GetPoints () + 2);
 		}
 	}
 
