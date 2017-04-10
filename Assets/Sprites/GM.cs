@@ -40,7 +40,7 @@ public class GM : MonoBehaviour {
 	public int GetPoints(){
 		return _Points;
 	}
-
+		
 }
 
 
