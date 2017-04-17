@@ -11,13 +11,15 @@ public class Flyingboolster : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{
-		var player = coll.gameObject.GetComponent<Players> ();
+		player = coll.gameObject.GetComponent<Players> ();
 		if (player != null) {
 			player.canFly = true;
 			gameObject.GetComponent<Collider2D>().enabled = false;
 			gameObject.GetComponent<SpriteRenderer> ().enabled = false; 
 
 			timeStarted = Time.time;
+
+			player.Powerup ();
 		}
 	}
 	 void Update()
