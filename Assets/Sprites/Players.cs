@@ -47,15 +47,18 @@ public class Players : MonoBehaviour {
 	
 		}
 
-		if (v.x > 0)
+		if (v.x > 0) {
 			sr.flipX = false;
-		else if (v.x < 0)
-			sr.flipX = true; 
+		} else {
+			if (v.x < 0)
+				sr.flipX = true;
+		}
 		
 		
 		if (Input.GetButtonDown ("Jump") && (v.y == 0 || canFly)) {
 			v.y = jumpspeed;
 		}
+			
 
 		if (air) {
 			anim.SetBool ("Air", true);
