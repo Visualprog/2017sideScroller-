@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour {
+	public int radius = 8;
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{
