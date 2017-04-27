@@ -2,24 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour 
+public class Bomb : Weapon
 {
 	public int radius = 8;
 	public bool isActive = false;
-	private new Rigidbody2D rigidBody;
-	private new Collider2D collider;
 
-	void Start()
-	{
-		rigidBody = GetComponent<Rigidbody2D> ();
-		collider = GetComponent<Collider2D> ();
-	} 
 
 	void Update()
 	{
-		if (Input.GetButtonDown ("Fire1")) 
+		if (Input.GetButtonDown ("Fire1")&& isActive) 
 		{
-			Explode();
+			Attack ();
 		}
 	}
 
@@ -33,29 +26,27 @@ public class Bomb : MonoBehaviour
 			
 			GetPickedUp (player);
 		}
-		if (isActive && player == null)
+		if (player == null && isActive)
 		{
-			
+			Explode();
 		}
 	}
 
-	public void Throw()
+
+	public override void GetPickedUp(Players player)
 	{
-		
+
+		isActive = true;
+		base.GetPickedUp (player);
 	}
 
-	public void GetPickedUp(Players player)
+	public override void Attack()
 	{
-		isActive = true;
-		collider.enabled = false;
-		rigidBody.isKinematic = true;
-		rigidBody.velocity = new Vector3 ();
-
-		transform.parent = player.transform;
-
-		transform.localScale = new Vector3 (0.04f, 0.04f);
+		transform.parent = null;
+		transform.localScale = new Vector3 (0.01f, 0.01f);
 		transform.localPosition = new Vector3 (0.2f, 0.2f);
-
+		collider2D.enabled = true;
+		rigidBody2D.isKinematic = false;
 	}
 
 	public void Explode()
