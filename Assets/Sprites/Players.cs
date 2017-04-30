@@ -76,8 +76,7 @@ public class Players : MonoBehaviour {
 			GetOut ();
 			
 		}
-
-
+			
 	}
 	public void GetOut(){
 		_GM.SetLives (_GM.GetLives() - 1); 
@@ -88,12 +87,9 @@ public class Players : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		air = false;
-		var weapon = coll.gameObject.GetComponent<Weapon> ();
-		if (weapon != null) {
-			weapon.GetPickedUp (this);
-			currentweapon = weapon;
-		}
+
 	}
+
 	void OnCollisionExit2D(Collision2D col)
 	{
 		air = true;
