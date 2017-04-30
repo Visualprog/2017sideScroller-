@@ -61,16 +61,10 @@ public class Players : MonoBehaviour {
 			v.y = jumpspeed;
 		}
 			
-		if (Input.GetButtonDown ("Fire1") && currentweapon == null)
+		if (Input.GetButtonDown ("Fire1") && currentweapon != null)
 			{
 				currentweapon.Attack();
 			}
-			
-		if (air) {
-			anim.SetBool ("Air", true);
-		} else {
-			anim.SetBool ("Air", false);
-		}
 
 		rigidbody.velocity = v; 
 
@@ -90,11 +84,6 @@ public class Players : MonoBehaviour {
 		transform.position = startingPosition; 
 		Debug.Log("You're Out");
 	}
-
-	public void Powerup(){
-		anim.SetTrigger ("powerup");
-	}
-
 		
 	void OnCollisionEnter2D(Collision2D coll)
 	{
@@ -110,4 +99,8 @@ public class Players : MonoBehaviour {
 		air = true;
 	}
 
+	public void Powerup()
+	{
+		anim.SetTrigger ("Powerup");
+	}
 }

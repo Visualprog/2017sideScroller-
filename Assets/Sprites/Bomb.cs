@@ -10,10 +10,6 @@ public class Bomb : Weapon
 
 	void Update()
 	{
-		if (Input.GetButtonDown ("Fire1")&& isActive) 
-		{
-			Attack ();
-		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
@@ -21,21 +17,19 @@ public class Bomb : Weapon
 
 		var player = coll.gameObject.GetComponent<Players> ();
 
-		if (player != null && !isActive) 
-		{
+		if (player == null && !isActive) {
 			
-			GetPickedUp (player);
-		}
-		if (player == null && isActive)
-		{
-			Explode();
+			Explode ();
 		}
 	}
-
 
 	public override void GetPickedUp(Players player)
 	{
 
+		if (isActive) 
+		{
+			return;
+		}
 		isActive = true;
 		base.GetPickedUp (player);
 	}
@@ -43,8 +37,9 @@ public class Bomb : Weapon
 	public override void Attack()
 	{
 		transform.parent = null;
-		transform.localScale = new Vector3 (0.01f, 0.01f);
-		transform.localPosition = new Vector3 (0.2f, 0.2f);
+
+		rigidBody2D.velocity = new Vector2 (5, 0);
+
 		collider2D.enabled = true;
 		rigidBody2D.isKinematic = false;
 	}

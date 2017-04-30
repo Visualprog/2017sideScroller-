@@ -21,10 +21,12 @@ public class Weapon : MonoBehaviour
 	public virtual void GetPickedUp(Players player)
 	{
 		transform.parent = player.transform; 
+	
+		transform.localPosition = new Vector3 (0.2f, 0.2f);
 
-		collider2D.enabled = false;
+		rigidBody2D.velocity = new Vector2 ();
 		rigidBody2D.isKinematic = true;
-		rigidBody2D.velocity = new Vector3 ();
+		collider2D.enabled = false;
 	}
 }
 
