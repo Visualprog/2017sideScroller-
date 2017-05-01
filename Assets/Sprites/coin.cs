@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class coin : MonoBehaviour {
 	public int value;
-	void OnCollisionEnter2D(Collision2D coll) 
+	void OnTriggerEnter2D(Collider2D coll) 
 	{
 
 		var player = coll.gameObject.GetComponent<Players> ();
