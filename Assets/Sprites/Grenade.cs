@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Throwable
+public class Grenade : Throwable 
 {
 	public int radius = 8;
 
@@ -11,12 +11,12 @@ public class Bomb : Throwable
 
 		var player = coll.gameObject.GetComponent<Players> ();
 
-		if (player == null && isActive) {
-			
+		if (player == null && isActive) 
+		{
+
 			Explode ();
 		}
 	}
-		
 
 	public void Explode()
 	{
@@ -27,9 +27,30 @@ public class Bomb : Throwable
 		{
 			if (Vector3.Distance (this.transform.position, e.transform.position) < radius)
 			{
-
-				e.gameObject.SetActive (false);
+			StartCoroutine(stun (e));
 			}
 		}
+
+ 		collider2D.enabled = false; 
+		GetComponent<SpriteRenderer> ();
+	}
+
+	IEnumerator stun(enermy e)
+	{
+		var renderer = e.GetComponent<SpriteRenderer> ();
+
+		e.enabled = false;
+		renderer.color = new Color(1,1,1, .4f);
+
+		yield return new WaitForSeconds(5);
+
+		e.enabled = true; 
+		renderer.color = new Color(1,1,1,1);
 	}
 }
+	
+
+
+
+
+

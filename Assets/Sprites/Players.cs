@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Players : MonoBehaviour {
 	public int health = 100;
-	public float speed = 5;
-	public float jumpspeed = 5;
+	public float speed = 10;
+	public float jumpspeed = 10;
 	public float deadZone = -15;
 	public bool  canFly = false;
 
@@ -87,6 +87,10 @@ public class Players : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		air = false;
+		var weapon = coll.gameObject.GetComponent<Weapon> ();
+		if (weapon != null) {
+			weapon.GetPickedUp (this);
+		}
 
 	}
 
