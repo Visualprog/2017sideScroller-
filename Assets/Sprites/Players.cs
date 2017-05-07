@@ -63,6 +63,7 @@ public class Players : MonoBehaviour {
 			
 		if (Input.GetButtonDown ("Fire1") && currentweapon != null)
 			{
+			Debug.Log ("going to attack");
 				currentweapon.Attack();
 			}
 

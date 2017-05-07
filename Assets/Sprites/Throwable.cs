@@ -22,7 +22,7 @@ public class Throwable : Weapon {
 	{
 		transform.parent = null;
 
-		rigidbody2D.velocity = new Vector2 (5, 0);
+		rigidbody2D.velocity = new Vector2 (15, 0);
 
 		collider2D.enabled = true;
 		rigidbody2D.isKinematic = false;
