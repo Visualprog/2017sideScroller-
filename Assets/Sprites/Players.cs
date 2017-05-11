@@ -9,7 +9,8 @@ public class Players : MonoBehaviour {
 	public float deadZone = -15;
 	public bool  canFly = false;
 
-	public Weapon currentweapon;
+	private Weapon currentweapon;
+	private List<Weapon> weapons = new List<Weapon> ();
 
 	new Rigidbody2D rigidbody; 
 	GM _GM; 
@@ -67,6 +68,11 @@ public class Players : MonoBehaviour {
 				currentweapon.Attack();
 			}
 
+		if (Input.GetButtonDown ("Fire2")) 
+		{
+			int i = (weapons.IndexOf(currentweapon) + 1) % weapons.Count;
+			SetCurrentWeapon (weapons [i]); 
+		}
 		rigidbody.velocity = v; 
 
 		//float for out 
@@ -85,12 +91,39 @@ public class Players : MonoBehaviour {
 		Debug.Log("You're Out");
 	}
 		
+
+	public void Powerup()
+	{
+		anim.SetTrigger ("Powerup");
+	}
+
+	public void AddWeapon(Weapon w)
+	{
+		weapons.Add (w);
+		SetCurrentWeapon (w);
+	}
+
+	public void SetCurrentWeapon(Weapon w)
+	{
+		Debug.Log ("change weapon from" + currentweapon);
+
+		if (currentweapon != null) {
+			currentweapon.gameObject.SetActive (false);
+		}
+		currentweapon = w;
+
+		if (currentweapon != null) {
+			currentweapon.gameObject.SetActive (true);
+		}
+	}
+
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		air = false;
 		var weapon = coll.gameObject.GetComponent<Weapon> ();
 		if (weapon != null) {
 			weapon.GetPickedUp (this);
+
 		}
 
 	}
@@ -99,9 +132,6 @@ public class Players : MonoBehaviour {
 	{
 		air = true;
 	}
-
-	public void Powerup()
-	{
-		anim.SetTrigger ("Powerup");
-	}
 }
+
+

@@ -20,15 +20,15 @@ public class Weapon : MonoBehaviour
 	}
 	public virtual void GetPickedUp(Players player)
 	{
-		player.currentweapon = this;
 		transform.parent = player.transform; 
 	
-		transform.localPosition = new Vector3 (0.5f, 0.5f);
-		transform.localScale = new Vector3 (.5f, .5f);
+		transform.localPosition = new Vector3 (0.3f, 0.3f);
+		transform.localScale = new Vector3 (.4f, .4f);
 
 		rigidbody2D.velocity = new Vector2 ();
 		rigidbody2D.isKinematic = true;
 		collider2D.enabled = false;
+		player.AddWeapon (this);
 	}
 }
 

@@ -29,9 +29,11 @@ public class MovingPlatform : MonoBehaviour {
 		}
 
 		var v = rigidbody2D.velocity;
-		v.x = -speed;
+		v.x = speed;
 		rigidbody2D.velocity = v;
 	}
+
 }
+
 
 	

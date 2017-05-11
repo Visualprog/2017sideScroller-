@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb : Throwable
 {
-	public int radius = 8;
+	public int radius = 5;
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
@@ -28,7 +28,7 @@ public class Bomb : Throwable
 			if (Vector3.Distance (this.transform.position, e.transform.position) < radius)
 			{
 
-				e.gameObject.SetActive (false);
+				e.death ();
 			}
 		}
 	}

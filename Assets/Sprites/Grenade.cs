@@ -21,7 +21,7 @@ public class Grenade : Throwable
 	public void Explode()
 	{
 		var enermies = FindObjectsOfType<enermy> ();
-		gameObject.SetActive (false);
+	
 
 		foreach (var e in enermies)
 		{
@@ -42,6 +42,7 @@ public class Grenade : Throwable
 
 		e.enabled = false;
 		if (animator != null) {
+			
 			animator.enabled = false;
 		}
 
