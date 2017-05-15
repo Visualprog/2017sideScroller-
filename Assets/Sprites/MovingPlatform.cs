@@ -3,37 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour {
+	public GameObject Platform;
+	public float moveSpeed;
+	public Transform currentPoint;
+	public Transform[] points;
+	public int pointsSelection;
 
-	new Rigidbody2D rigidbody2D;
-	float startingX;
-	public float speed = 0.3f;
-	public float distance = 3;
-
-	// Use this for initialization
-	void Start ()
+	void Start()
 	{
-		rigidbody2D = GetComponent<Rigidbody2D>();
-		startingX = transform.position.x;
-
+		currentPoint = points [pointsSelection];
 	}
 
-	// Update is called once per frame
-	void FixedUpdate ()
+	void Update()
 	{
-		if (transform.position.x < startingX - distance) {
-			speed = -speed;
-		}
-		if (transform.position.x > startingX) {
-			speed = -speed;
+		Platform.transform.position = Vector3.MoveTowards (Platform.transform.position, currentPoint.position, Time.deltaTime * moveSpeed);
 
+		if (Platform.transform.position == currentPoint.position) 
+		{
+			pointsSelection++;
+			if (pointsSelection == points.Length) 
+			{
+				pointsSelection = 0;
+			}
 		}
-
-		var v = rigidbody2D.velocity;
-		v.x = speed;
-		rigidbody2D.velocity = v;
+		currentPoint = points [pointsSelection];
 	}
-
 }
+
 
 
 	

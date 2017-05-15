@@ -8,6 +8,7 @@ public class Players : MonoBehaviour {
 	public float jumpspeed = 10;
 	public float deadZone = -15;
 	public bool  canFly = false;
+	public bool changeSpeed = false;
 
 	private Weapon currentweapon;
 	private List<Weapon> weapons = new List<Weapon> ();
@@ -15,6 +16,7 @@ public class Players : MonoBehaviour {
 	new Rigidbody2D rigidbody; 
 	GM _GM; 
 	private Vector3 startingPosition; 
+	private GameObject coll;
 	 
 	private Animator anim;
 	public bool air; 
@@ -131,7 +133,18 @@ public class Players : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D col)
 	{
 		air = true;
+		if (coll.transform.tag == "MovingPlatform") {
+			transform.parent = null;
+		}
+	}
+
+	void OnCollisionStar2D(Collision2D collision)
+	{
+		if(coll.transform.tag == "MovingPlatform") {
+			transform.parent = collision.transform;
+		}
 	}
 }
+
 
 
