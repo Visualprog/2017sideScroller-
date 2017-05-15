@@ -11,7 +11,7 @@ public class enermy : MonoBehaviour
 		healthlife = healthlife - 1;
 
 		if (healthlife == 0) {
-			gameObject.SetActive (true);
+			gameObject.SetActive (false);
 		}
 	}
 			

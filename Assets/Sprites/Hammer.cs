@@ -10,9 +10,10 @@ public class Hammer : Throwable {
 
 			var player = coll.gameObject.GetComponent<Players> ();
 
-			if (player == null && isActive) {
-
-				Explode ();
+			if (player  != null ) 
+			{
+			gameObject.SetActive (false);
+			FindObjectOfType<GM> ().SetLives (FindObjectOfType<GM> ().GetLives () + 1);
 			}
 		}
 
