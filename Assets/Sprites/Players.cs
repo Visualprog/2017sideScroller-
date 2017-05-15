@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Players : MonoBehaviour {
 	public int health = 100;
@@ -9,6 +10,7 @@ public class Players : MonoBehaviour {
 	public float deadZone = -15;
 	public bool  canFly = false;
 	public bool changeSpeed = false;
+
 
 	private Weapon currentweapon;
 	private List<Weapon> weapons = new List<Weapon> ();
